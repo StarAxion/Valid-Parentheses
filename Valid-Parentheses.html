@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Valid Parentheses</title>
+</head>
+
+<body>
+	<main>
+		<p>
+			Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is
+			valid.
+		</p>
+		<p>
+			An input string is valid if:
+		</p>
+		<ol>
+			<li>Open brackets must be closed by the same type of brackets.</li>
+			<li>Open brackets must be closed in the correct order.</li>
+		</ol>
+	</main>
+
+	<script>
+
+		var isValid = function (s) {
+			var pairs = ['()', '{}', '[]'],
+				checkArr = [],
+				strSize = s.length,
+				i;
+
+			for (i = 0; i < strSize; i += 1) {
+				var bkt = s[i],
+					pair,
+					openPar;
+
+				// FIRST method:
+				/* 
+				for (pair of pairs) {
+					if (pair.includes(bkt)) {
+						if (pair.indexOf(bkt) === 0) {
+							checkArr.push(bkt);
+						} else {
+							openPar = checkArr.pop();
+							if (pair[0] !== openPar) {
+								return false;
+							}
+						}
+						break;
+					}
+				}
+				*/
+
+				// SECOND method: 
+
+				pair = pairs.find(function (pair) {
+					return pair.includes(bkt);
+				});
+
+				if (pair.indexOf(bkt) === 0) {
+					checkArr.push(bkt);
+				} else {
+					openPar = checkArr.pop();
+					if (pair[0] !== openPar) {
+						return false;
+					}
+				}
+			}
+
+			return !checkArr.length;
+		};
+
+		console.log(isValid("()")); //true
+		console.log(isValid("()[]{}")); //true
+		console.log(isValid("(]")); //false
+		console.log(isValid("([)]")); //false
+		console.log(isValid("{[]}")); //true
+
+	</script>
+</body>
+
+</html>
