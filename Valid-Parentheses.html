@@ -28,12 +28,13 @@
 			var pairs = ['()', '{}', '[]'],
 				checkArr = [],
 				strSize = s.length,
-				i;
+				i,
+				bkt,
+				pair,
+				openPar;
 
 			for (i = 0; i < strSize; i += 1) {
-				var bkt = s[i],
-					pair,
-					openPar;
+				bkt = s[i];
 
 				// FIRST method:
 				/* 
@@ -71,11 +72,11 @@
 			return !checkArr.length;
 		};
 
-		console.log(isValid("()")); //true
-		console.log(isValid("()[]{}")); //true
-		console.log(isValid("(]")); //false
-		console.log(isValid("([)]")); //false
-		console.log(isValid("{[]}")); //true
+		console.log(isValid("()")); // true
+		console.log(isValid("()[]{}")); // true
+		console.log(isValid("(]")); // false
+		console.log(isValid("([)]")); // false
+		console.log(isValid("{[]}")); // true
 
 	</script>
 </body>
